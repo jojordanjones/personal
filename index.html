@@ -22,6 +22,7 @@
         <li><a href="#dashboards" class="text-gray-700 hover:text-indigo-600">Dashboards</a></li>
         <li><a href="#manifesto" class="text-gray-700 hover:text-indigo-600">Manifesto</a></li>
         <li><a href="#goals" class="text-gray-700 hover:text-indigo-600">Goal Map</a></li>
+        <li><a href="#knowledge-base" class="text-gray-700 hover:text-indigo-600">Knowledge Base</a></li>
       </ul>
     </nav>
   </header>
@@ -245,17 +246,52 @@
         </div>
       </div>
     </section>
+    <!-- Section VII: Knowledge Base -->
+    <section id="knowledge-base">
+      <h2 class="text-3xl font-semibold mb-4">Section VII: Knowledge Base</h2>
+      <div class="border rounded shadow">
+        <button class="w-full text-left px-4 py-2 bg-indigo-600 text-white" data-accordion-target="kb-quotes">Favorite Quotes</button>
+        <div id="kb-quotes" class="p-4 space-y-2 hidden">
+          <ul class="list-disc pl-5 space-y-1">
+            <li>"You become what you consistently practice…"</li>
+            <li>"Life is not a checklist—it’s a ritual."</li>
+            <li>"You don’t need to earn your rest."</li>
+          </ul>
+        </div>
+        <div class="border-t">
+          <button class="w-full text-left px-4 py-2 bg-indigo-600 text-white" data-accordion-target="kb-habits">Key Learnings from 'Atomic Habits'</button>
+          <div id="kb-habits" class="p-4 space-y-2 hidden">
+            <ul class="list-disc pl-5 space-y-1">
+              <li>Focus on tiny, consistent improvements.</li>
+              <li>Design your environment for success.</li>
+              <li>Track habits to build momentum.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="border-t">
+          <button class="w-full text-left px-4 py-2 bg-indigo-600 text-white" data-accordion-target="kb-therapy">Therapy Insights - Q1 2025</button>
+          <div id="kb-therapy" class="p-4 space-y-2 hidden">
+            <ul class="list-disc pl-5 space-y-1">
+              <li>Practice self-compassion scripts regularly.</li>
+              <li>Map emotional "parts" to understand triggers.</li>
+              <li>Remember: showing up despite fear is victory.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <script>
-    document.querySelectorAll('button[data-accordion-target]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const target = document.getElementById(btn.getAttribute('data-accordion-target'));
-        if (target.classList.contains('hidden')) {
-          target.classList.remove('hidden');
-        } else {
-          target.classList.add('hidden');
-        }
+    document.querySelectorAll("button[data-accordion-target]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const section = btn.closest("section");
+        const targetId = btn.getAttribute("data-accordion-target");
+        section.querySelectorAll("div[id]").forEach(el => {
+          if (el.id !== targetId) el.classList.add("hidden");
+        });
+        const target = document.getElementById(targetId);
+        target.classList.toggle("hidden");
       });
     });
   </script>
