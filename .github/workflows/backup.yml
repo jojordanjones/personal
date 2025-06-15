@@ -1,0 +1,23 @@
+name: Backup Data
+on:
+  schedule:
+    - cron: '0 12 * * *'
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - run: zip -r data.zip data
+      - uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-west-2
+      - run: aws s3 cp data.zip s3://$OBSIDIAN_BACKUP/$(date +%F).zip
+        env:
+          OBSIDIAN_BACKUP: ${{ secrets.OBSIDIAN_BACKUP }}

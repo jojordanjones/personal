@@ -1,0 +1,6 @@
+{
+  "name": "journalsite",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "postCreateCommand": "pip install fastapi uvicorn python-dotenv && npm i",
+  "forwardPorts": [3000, 8000]
+}
