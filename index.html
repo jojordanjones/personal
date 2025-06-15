@@ -22,6 +22,7 @@
         <li><a href="#dashboards" class="text-gray-700 hover:text-indigo-600">Dashboards</a></li>
         <li><a href="#manifesto" class="text-gray-700 hover:text-indigo-600">Manifesto</a></li>
         <li><a href="#goals" class="text-gray-700 hover:text-indigo-600">Goal Map</a></li>
+        <li><a href="#knowledge-base" class="text-gray-700 hover:text-indigo-600">Knowledge Base</a></li>
       </ul>
     </nav>
   </header>
@@ -245,17 +246,54 @@
         </div>
       </div>
     </section>
+
+    <!-- Section VII: Knowledge Base -->
+    <section id="knowledge-base">
+      <h2 class="text-3xl font-semibold mb-4">Knowledge Base</h2>
+      <div class="border rounded shadow">
+        <button class="w-full text-left px-4 py-2 bg-indigo-600 text-white" data-accordion-target="kb1">Favorite Quotes</button>
+        <div id="kb1" class="p-4 hidden">
+          <ul class="list-disc pl-5 space-y-1">
+            <li>"You become what you consistently practice…"</li>
+            <li>"Life is not a checklist—it’s a ritual."</li>
+            <li>"You don’t need to earn your rest."</li>
+          </ul>
+        </div>
+      </div>
+      <div class="border rounded shadow mt-4">
+        <button class="w-full text-left px-4 py-2 bg-indigo-600 text-white" data-accordion-target="kb2">Key Learnings from 'Atomic Habits'</button>
+        <div id="kb2" class="p-4 hidden">
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Focus on tiny habit changes for big results.</li>
+            <li>Create systems that make good habits inevitable.</li>
+            <li>Track progress to stay consistent.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="border rounded shadow mt-4">
+        <button class="w-full text-left px-4 py-2 bg-indigo-600 text-white" data-accordion-target="kb3">Therapy Insights - Q1 2025</button>
+        <div id="kb3" class="p-4 hidden">
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Showing up when it’s hard is a victory.</li>
+            <li>Boundaries invite safety, not distance.</li>
+            <li>Growth often looks unimpressive while it’s happening.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
   </main>
 
   <script>
     document.querySelectorAll('button[data-accordion-target]').forEach(btn => {
       btn.addEventListener('click', () => {
         const target = document.getElementById(btn.getAttribute('data-accordion-target'));
-        if (target.classList.contains('hidden')) {
-          target.classList.remove('hidden');
-        } else {
-          target.classList.add('hidden');
-        }
+        const section = btn.closest('section');
+        section.querySelectorAll('div[id]').forEach(div => {
+          if (div !== target) {
+            div.classList.add('hidden');
+          }
+        });
+        target.classList.toggle('hidden');
       });
     });
   </script>
